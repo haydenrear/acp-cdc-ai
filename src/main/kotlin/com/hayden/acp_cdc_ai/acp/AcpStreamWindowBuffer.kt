@@ -1,9 +1,9 @@
 package com.hayden.acp_cdc_ai.acp
 
 import com.agentclientprotocol.model.ContentBlock
-import com.hayden.utilitymodule.acp.events.ArtifactKey
-import com.hayden.utilitymodule.acp.events.EventBus
-import com.hayden.utilitymodule.acp.events.Events
+import com.hayden.acp_cdc_ai.acp.events.ArtifactKey
+import com.hayden.acp_cdc_ai.acp.events.EventBus
+import com.hayden.acp_cdc_ai.acp.events.Events
 import org.springframework.ai.chat.messages.AssistantMessage
 import org.springframework.ai.chat.model.Generation
 import java.time.Instant

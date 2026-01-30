@@ -5,8 +5,8 @@ import com.agentclientprotocol.model.ContentBlock
 import com.agentclientprotocol.model.SessionUpdate
 import com.agentclientprotocol.model.ToolCallContent
 import com.agentclientprotocol.model.ToolCallStatus
-import com.hayden.utilitymodule.acp.events.ArtifactKey
-import com.hayden.utilitymodule.acp.events.Events
+import com.hayden.acp_cdc_ai.acp.events.ArtifactKey
+import com.hayden.acp_cdc_ai.acp.events.Events
 import org.springframework.ai.chat.model.Generation
 import java.time.Instant
 import java.util.UUID

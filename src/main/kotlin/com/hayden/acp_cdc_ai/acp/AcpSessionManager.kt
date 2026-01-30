@@ -6,9 +6,9 @@ import com.agentclientprotocol.common.Event
 import com.agentclientprotocol.model.ContentBlock
 import com.agentclientprotocol.protocol.Protocol
 import com.agentclientprotocol.transport.Transport
-import com.hayden.utilitymodule.acp.events.ArtifactKey
-import com.hayden.utilitymodule.acp.events.EventBus
-import com.hayden.utilitymodule.acp.events.Events
+import com.hayden.acp_cdc_ai.acp.events.ArtifactKey
+import com.hayden.acp_cdc_ai.acp.events.EventBus
+import com.hayden.acp_cdc_ai.acp.events.Events
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.json.JsonElement

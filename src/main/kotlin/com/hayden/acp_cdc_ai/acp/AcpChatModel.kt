@@ -9,12 +9,12 @@ import com.agentclientprotocol.protocol.Protocol
 import com.agentclientprotocol.transport.Transport
 import com.hayden.acp_cdc_ai.acp.config.AcpModelProperties
 import com.hayden.acp_cdc_ai.acp.config.McpProperties
-import com.hayden.utilitymodule.acp.events.ArtifactKey
-import com.hayden.utilitymodule.acp.events.EventBus
+import com.hayden.acp_cdc_ai.acp.events.ArtifactKey
+import com.hayden.acp_cdc_ai.acp.events.EventBus
 import com.hayden.utilitymodule.nullable.mapNullable
 import com.hayden.utilitymodule.nullable.or
 import com.hayden.acp_cdc_ai.permission.IPermissionGate
-import modelcontextprotocol.server.IdeMcpAsyncServer.TOOL_ALLOWLIST_HEADER
+import io.modelcontextprotocol.server.IdeMcpAsyncServer.TOOL_ALLOWLIST_HEADER
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

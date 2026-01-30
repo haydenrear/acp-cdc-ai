@@ -7,7 +7,7 @@ import com.hayden.utilitymodule.result.error.SingleError;
 import io.modelcontextprotocol.client.McpAsyncClient;
 import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.client.McpSyncClient;
-import modelcontextprotocol.client.transport.DelegatingHttpClientStreamableHttpTransport;
+import io.modelcontextprotocol.client.transport.DelegatingHttpClientStreamableHttpTransport;
 import io.modelcontextprotocol.client.transport.HttpClientStreamableHttpTransport;
 import io.modelcontextprotocol.client.transport.ServerParameters;
 import io.modelcontextprotocol.client.transport.StdioClientTransport;

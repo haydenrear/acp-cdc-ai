@@ -2,7 +2,7 @@
  * Copyright 2024-2025 the original author or authors.
  */
 
-package modelcontextprotocol.server;
+package io.modelcontextprotocol.server;
 
 import io.modelcontextprotocol.json.McpJsonMapper;
 import io.modelcontextprotocol.json.schema.JsonSchemaValidator;

@@ -2,7 +2,7 @@
  * Copyright 2024-2025 the original author or authors.
  */
 
-package modelcontextprotocol.client.transport;
+package io.modelcontextprotocol.client.transport;
 
 import io.modelcontextprotocol.client.McpAsyncClient;
 import io.modelcontextprotocol.client.transport.ResponseSubscribers.ResponseEvent;

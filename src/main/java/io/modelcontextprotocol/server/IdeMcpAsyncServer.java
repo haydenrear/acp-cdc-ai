@@ -1,4 +1,4 @@
-package modelcontextprotocol.server;
+package io.modelcontextprotocol.server;
 
 import com.hayden.utilitymodule.mcp.ctx.McpRequestContext;
 import io.modelcontextprotocol.json.McpJsonMapper;
