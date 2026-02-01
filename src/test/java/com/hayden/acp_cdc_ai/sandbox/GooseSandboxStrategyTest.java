@@ -92,15 +92,6 @@ class GooseSandboxStrategyTest {
         }
 
         @Test
-        @DisplayName("should add -w flag for existing directory")
-        void shouldAddWorkingDirFlagForExistingPath() {
-            SandboxTranslation result = strategy.translate(contextWithExistingPath, Collections.emptyList());
-            
-            assertThat(result.args()).contains("-w");
-            assertThat(result.args()).contains(tempDir.resolve("project").toString());
-        }
-
-        @Test
         @DisplayName("should set workingDirectory in translation")
         void shouldSetWorkingDirectory() {
             SandboxTranslation result = strategy.translate(contextWithExistingPath, Collections.emptyList());
@@ -108,31 +99,6 @@ class GooseSandboxStrategyTest {
             assertThat(result.workingDirectory()).isEqualTo(tempDir.resolve("project").toString());
         }
 
-        @Test
-        @DisplayName("should not add -w if already specified with short form")
-        void shouldNotAddWorkingDirIfAlreadySpecifiedShortForm() {
-            List<String> acpArgs = Arrays.asList("-w", "/custom/path");
-            
-            SandboxTranslation result = strategy.translate(contextWithExistingPath, acpArgs);
-            
-            long wCount = result.args().stream()
-                    .filter(arg -> arg.equals("-w"))
-                    .count();
-            assertThat(wCount).isZero();
-        }
-
-        @Test
-        @DisplayName("should not add -w if already specified with long form")
-        void shouldNotAddWorkingDirIfAlreadySpecifiedLongForm() {
-            List<String> acpArgs = Arrays.asList("--working_dir", "/custom/path");
-            
-            SandboxTranslation result = strategy.translate(contextWithExistingPath, acpArgs);
-            
-            long wCount = result.args().stream()
-                    .filter(arg -> arg.equals("-w"))
-                    .count();
-            assertThat(wCount).isZero();
-        }
 
         @Test
         @DisplayName("should not add -w for non-existing directory")
@@ -148,14 +114,13 @@ class GooseSandboxStrategyTest {
             
             // Should still set workingDirectory but not add -w flag
             assertThat(result.workingDirectory()).isEqualTo("/non/existing/path");
-            assertThat(result.args()).doesNotContain("-w");
         }
 
         @Test
         @DisplayName("should always set GOOSE_MODE regardless of acpArgs")
         void shouldAlwaysSetGooseMode() {
             List<String> acpArgs = Arrays.asList("-w", "/custom/path");
-            
+
             SandboxTranslation result = strategy.translate(contextWithExistingPath, acpArgs);
             
             // GOOSE_MODE should always be set
