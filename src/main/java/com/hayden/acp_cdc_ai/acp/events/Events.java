@@ -150,7 +150,8 @@ public interface Events {
             String nodeId,
             String agentName,
             String actionName,
-            String outcomeType
+            String outcomeType,
+            Artifact.AgentModel agentModel
     ) implements AgentEvent {
         @Override
         public String eventType() {
@@ -487,6 +488,22 @@ public interface Events {
         @Override
         public String eventType() {
             return "CHAT_SESSION_CREATED";
+        }
+    }
+
+    record ChatSessionClosedEvent(
+            String eventId,
+            Instant timestamp,
+            String sessionId
+    ) implements Events.GraphEvent {
+        @Override
+        public String nodeId() {
+            return sessionId;
+        }
+
+        @Override
+        public String eventType() {
+            return "CHAT_SESSION_CLOSED";
         }
     }
 
