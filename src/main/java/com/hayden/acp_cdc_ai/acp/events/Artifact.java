@@ -60,6 +60,8 @@ public sealed interface Artifact
         return this.getClass().getSimpleName();
     }
 
+    Artifact withArtifactKey(ArtifactKey key);
+
     default List<Artifact> collectRecursiveChildren() {
         var l = new ArrayList<>(this.children());
         this.children().stream().flatMap(a -> a.collectRecursiveChildren().stream())
@@ -111,6 +113,11 @@ public sealed interface Artifact
         }
 
         @Override
+        public Artifact withArtifactKey(ArtifactKey key) {
+            return this.withAgentModel(agentModel.withContextId(key));
+        }
+
+        @Override
         public Optional<String> contentHash() {
             return Optional.ofNullable(hash);
         }
@@ -142,6 +149,8 @@ public sealed interface Artifact
         default String artifactType() {
             return this.getClass().getSimpleName();
         }
+
+        AgentModel withContextId(ArtifactKey key);
 
         @JsonIgnore
         <T extends AgentModel> T withChildren(List<AgentModel> c);
@@ -186,12 +195,17 @@ public sealed interface Artifact
             String artifactType
     ) implements Templated {
 
-//      This is the part that's deduped.
+        //      This is the part that's deduped.
         @Override
         @JsonIgnore
         public String templateText() {
             return Optional.ofNullable(ref).map(Templated::templateText)
                     .orElseGet(() -> null);
+        }
+
+        @Override
+        public Templated withArtifactKey(ArtifactKey key) {
+            return withTemplateArtifactKey(key);
         }
 
         @Override
@@ -232,6 +246,10 @@ public sealed interface Artifact
             String schema
     ) implements Templated {
 
+        @Override
+        public Templated withArtifactKey(ArtifactKey key) {
+            return withTemplateArtifactKey(key);
+        }
 
         @Override
         public Artifact withChildren(List<Artifact> children) {
