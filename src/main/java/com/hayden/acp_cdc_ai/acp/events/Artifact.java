@@ -376,7 +376,7 @@ public sealed interface Artifact
     @Builder(toBuilder = true)
     @With
     record PromptContributionTemplate(
-            ArtifactKey artifactKey,
+            ArtifactKey templateArtifactKey,
             String contributorName,
             int priority,
             List<String> agentTypes,
@@ -394,13 +394,13 @@ public sealed interface Artifact
         }
 
         @Override
-        public Optional<String> contentHash() {
-            return Optional.ofNullable(hash);
+        public Artifact withArtifactKey(ArtifactKey key) {
+            return this.withTemplateArtifactKey(templateArtifactKey);
         }
 
         @Override
-        public ArtifactKey templateArtifactKey() {
-            return artifactKey;
+        public Optional<String> contentHash() {
+            return Optional.ofNullable(hash);
         }
 
     }
@@ -408,7 +408,7 @@ public sealed interface Artifact
     @Builder(toBuilder = true)
     @With
     record ToolPrompt(
-            ArtifactKey artifactKey,
+            ArtifactKey templateArtifactKey,
             Map<String, String> metadata,
             List<Artifact> children,
             String toolCallName,
@@ -427,20 +427,25 @@ public sealed interface Artifact
         }
 
         @Override
+        public Templated withArtifactKey(ArtifactKey key) {
+            return withTemplateArtifactKey(key);
+        }
+
+        @Override
         public Optional<String> contentHash() {
             return Optional.ofNullable(hash);
         }
 
         @Override
         public ArtifactKey templateArtifactKey() {
-            return artifactKey;
+            return templateArtifactKey;
         }
     }
 
     @Builder(toBuilder = true)
     @With
     record SkillPrompt(
-            ArtifactKey artifactKey,
+            ArtifactKey templateArtifactKey,
             Map<String, String> metadata,
             List<Artifact> children,
             String skillName,
@@ -461,13 +466,18 @@ public sealed interface Artifact
 
 
         @Override
+        public Artifact withArtifactKey(ArtifactKey key) {
+            return withTemplateArtifactKey(key);
+        }
+
+        @Override
         public Optional<String> contentHash() {
             return Optional.ofNullable(hash);
         }
 
         @Override
         public ArtifactKey templateArtifactKey() {
-            return artifactKey;
+            return templateArtifactKey;
         }
     }
 
