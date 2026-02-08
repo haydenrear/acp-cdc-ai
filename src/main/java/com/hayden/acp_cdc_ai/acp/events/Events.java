@@ -722,6 +722,166 @@ public interface Events {
         }
     }
 
+    // ============ TUI EVENTS ============
+
+    sealed interface TuiEvent {
+    }
+
+    sealed interface TuiInteractionEvent extends TuiEvent
+            permits
+            EventStreamMoveSelection,
+            EventStreamScroll,
+            EventStreamOpenDetail,
+            EventStreamCloseDetail,
+            FocusChatInput,
+            FocusEventStream,
+            ChatInputChanged,
+            ChatInputSubmitted,
+            ChatSearchOpened,
+            ChatSearchQueryChanged,
+            ChatSearchResultNavigate,
+            ChatSearchClosed,
+            SessionSelected,
+            SessionCreated,
+            FocusSessionList {
+    }
+
+    sealed interface TuiSystemEvent extends TuiEvent
+            permits
+            EventStreamAppended,
+            EventStreamTrimmed,
+            ChatMessageAppended,
+            ChatHistoryTrimmed {
+    }
+
+    record TuiInteractionGraphEvent(
+            String eventId,
+            Instant timestamp,
+            String nodeId,
+            String sessionId,
+            TuiInteractionEvent tuiEvent
+    ) implements GraphEvent {
+        @Override
+        public String eventType() {
+            return "TUI_INTERACTION";
+        }
+    }
+
+    record TuiSystemGraphEvent(
+            String eventId,
+            Instant timestamp,
+            String nodeId,
+            String sessionId,
+            TuiSystemEvent tuiEvent
+    ) implements GraphEvent {
+        @Override
+        public String eventType() {
+            return "TUI_SYSTEM";
+        }
+    }
+
+    record EventStreamMoveSelection(
+            int delta,
+            int newSelectedIndex
+    ) implements TuiInteractionEvent {
+    }
+
+    record EventStreamScroll(
+            int delta,
+            int newScrollOffset
+    ) implements TuiInteractionEvent {
+    }
+
+    record EventStreamOpenDetail(
+            String eventId
+    ) implements TuiInteractionEvent {
+    }
+
+    record EventStreamCloseDetail(
+            String eventId
+    ) implements TuiInteractionEvent {
+    }
+
+    record FocusChatInput(
+            String previousFocus
+    ) implements TuiInteractionEvent {
+    }
+
+    record FocusEventStream(
+            String previousFocus
+    ) implements TuiInteractionEvent {
+    }
+
+    record ChatInputChanged(
+            String text,
+            int cursorPosition
+    ) implements TuiInteractionEvent {
+    }
+
+    record ChatInputSubmitted(
+            String text
+    ) implements TuiInteractionEvent {
+    }
+
+    record ChatSearchOpened(
+            String initialQuery
+    ) implements TuiInteractionEvent {
+    }
+
+    record ChatSearchQueryChanged(
+            String query,
+            int cursorPosition
+    ) implements TuiInteractionEvent {
+    }
+
+    record ChatSearchResultNavigate(
+            int delta,
+            int resultIndex
+    ) implements TuiInteractionEvent {
+    }
+
+    record ChatSearchClosed(
+            String query
+    ) implements TuiInteractionEvent {
+    }
+
+    record SessionSelected(
+            String sessionId
+    ) implements TuiInteractionEvent {
+    }
+
+    record SessionCreated(
+            String sessionId
+    ) implements TuiInteractionEvent {
+    }
+
+    record FocusSessionList(
+            String previousFocus
+    ) implements TuiInteractionEvent {
+    }
+
+    record EventStreamAppended(
+            String graphEventId,
+            int rowIndex
+    ) implements TuiSystemEvent {
+    }
+
+    record EventStreamTrimmed(
+            int removedCount
+    ) implements TuiSystemEvent {
+    }
+
+    record ChatMessageAppended(
+            String messageId,
+            int rowIndex
+    ) implements TuiSystemEvent {
+    }
+
+    record ChatHistoryTrimmed(
+            int removedCount
+    ) implements TuiSystemEvent {
+    }
+
     record UiStateSnapshot(
             String sessionId,
             String revision,
