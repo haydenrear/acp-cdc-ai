@@ -2,6 +2,7 @@ package com.hayden.acp_cdc_ai.acp.events;
 
 import com.agui.core.types.BaseEvent;
 import com.fasterxml.jackson.annotation.JsonClassDescription;
+import lombok.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -242,6 +243,7 @@ public interface Events {
         }
     }
 
+    @Builder
     record NodeErrorEvent(
             String eventId,
             Instant timestamp,
@@ -250,6 +252,17 @@ public interface Events {
             NodeType nodeType,
             String message
     ) implements GraphEvent {
+
+        public static NodeErrorEvent err(String errorMessage, ArtifactKey curr) {
+            return NodeErrorEvent.builder()
+                    .message(errorMessage)
+                    .nodeId(curr.value())
+                    .nodeType(NodeType.SUMMARY)
+                    .nodeTitle("Found an error.")
+                    .timestamp(Instant.now())
+                    .build();
+        }
+
         @Override
         public String eventType() {
             return "NODE_ERROR";
