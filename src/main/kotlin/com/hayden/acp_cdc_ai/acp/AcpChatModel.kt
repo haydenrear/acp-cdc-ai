@@ -247,7 +247,7 @@ class AcpChatModel(
         val workingDirectory = properties.workingDirectory
 
         val joinedEnv = sandboxTranslation.env.toMutableMap()
-//        joinedEnv["user.dir"] = sandboxTranslation.workingDirectory TODO: ... ??? whaaaaaaaaa ... GOTCHA!
+//        joinedEnv["user.dir"] = sandboxTranslation.workingDirectory
 //        joinedEnv["PATH"] = "" TODO: the path should probably include all docker env, java home, etc...
         joinedEnv.putAll(properties.envCopy())
 
