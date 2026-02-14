@@ -851,7 +851,8 @@ public interface Events {
     record ChatSessionCreatedEvent(
             String eventId,
             Instant timestamp,
-            String nodeId
+            String nodeId,
+            ArtifactKey chatModelId
     ) implements Events.GraphEvent {
         @Override
         public String eventType() {
@@ -882,6 +883,7 @@ public interface Events {
             String eventId,
             Instant timestamp,
             String nodeId,
+            ArtifactKey chatKey,
             String deltaContent,
             int tokenCount,
             boolean isFinal
@@ -896,6 +898,7 @@ public interface Events {
             String eventId,
             Instant timestamp,
             String nodeId,
+            ArtifactKey chatKey,
             String deltaContent,
             int tokenCount,
             boolean isFinal
@@ -910,6 +913,7 @@ public interface Events {
             String eventId,
             Instant timestamp,
             String nodeId,
+            ArtifactKey chatKey,
             String toolCallId,
             String title,
             String kind,
