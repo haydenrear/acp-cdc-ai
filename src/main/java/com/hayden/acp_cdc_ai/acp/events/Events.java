@@ -250,6 +250,7 @@ public interface Events {
                         line("nodeId", e.nodeId()),
                         block("reason", e.reason()));
                 case ChatSessionCreatedEvent e -> formatEvent("Chat Session Created Event", e.eventType(),
+                        line("chatSessionId / agentNodeId (for sending messages to this chat)", e.chatModelId.value()),
                         line("eventId", e.eventId()),
                         line("timestamp", e.timestamp()),
                         line("nodeId", e.nodeId()));
