@@ -4,10 +4,7 @@ import com.hayden.acp_cdc_ai.repository.RequestContext;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.hayden.acp_cdc_ai.sandbox.SandboxArgUtils.*;
 
@@ -40,7 +37,8 @@ public class ClaudeCodeSandboxStrategy implements SandboxTranslationStrategy {
     }
 
     @Override
-    public SandboxTranslation translate(RequestContext context, List<String> acpArgs) {
+    public SandboxTranslation translate(RequestContext context, List<String> acpArgs, String modelName) {
+        var args = SandboxTranslationStrategy.parseFromAcpArgsClaude(acpArgs, modelName);
         if (context == null || context.mainWorktreePath() == null) {
             return SandboxTranslation.empty();
         }
@@ -49,7 +47,6 @@ public class ClaudeCodeSandboxStrategy implements SandboxTranslationStrategy {
         List<Path> submodulePaths = context.submoduleWorktreePaths();
         
         Map<String, String> env = new HashMap<>();
-        List<String> args = new ArrayList<>();
 
         // Add main worktree as an additional directory if not already specified
         if (!hasFlagValuePair(acpArgs, mainPath, "--add-dir")) {

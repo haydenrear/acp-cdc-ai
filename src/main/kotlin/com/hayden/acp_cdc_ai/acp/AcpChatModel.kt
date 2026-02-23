@@ -166,8 +166,10 @@ class AcpChatModel(
         val pb = ProcessBuilder(*command)
             .redirectInput(ProcessBuilder.Redirect.PIPE)
             .redirectOutput(ProcessBuilder.Redirect.PIPE)
-            .redirectError(ProcessBuilder.Redirect.PIPE)
+            .redirectError(File("%s-errs.log".format(command.first())))
             .directory(dir.toFile())
+
+        pb.environment()["CLAUDECODE"] = "0"
 
        this.properties.envCopy()
            ?.forEach { (envKey, envValue) -> pb.environment()[envKey] = envValue }
