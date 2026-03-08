@@ -1,2 +1,2 @@
-[2m2026-03-06T20:35:21.304550Z[0m [31mERROR[0m [2mcodex_api::endpoint::responses_websocket[0m[2m:[0m failed to connect to websocket: HTTP error: 426 Upgrade Required, url: wss://chatgpt.com/backend-api/codex/responses
-[2m2026-03-06T20:35:21.782614Z[0m [31mERROR[0m [2mcodex_api::endpoint::responses_websocket[0m[2m:[0m failed to connect to websocket: HTTP error: 426 Upgrade Required, url: wss://chatgpt.com/backend-api/codex/responses
+[2m2026-03-08T01:39:33.710847Z[0m [31mERROR[0m [2mcodex_api::endpoint::responses_websocket[0m[2m:[0m failed to connect to websocket: HTTP error: 426 Upgrade Required, url: wss://chatgpt.com/backend-api/codex/responses
+[2m2026-03-08T01:39:34.418419Z[0m [31mERROR[0m [2mcodex_api::endpoint::responses_websocket[0m[2m:[0m failed to connect to websocket: HTTP error: 426 Upgrade Required, url: wss://chatgpt.com/backend-api/codex/responses
